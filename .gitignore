@@ -15,6 +15,7 @@ node_modules/
 examples/test
 .idea/
 .vscode/
+.tea/
 TODO.md
 tsconfig.tsbuildinfo
 package/
