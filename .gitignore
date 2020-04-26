@@ -15,8 +15,9 @@ node_modules/
 examples/test
 .idea/
 .vscode/
-.tea/
 TODO.md
 tsconfig.tsbuildinfo
 package/
 package.zip
+# 小程序相关
+.tea/
