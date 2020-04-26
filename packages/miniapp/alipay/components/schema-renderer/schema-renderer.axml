@@ -1,0 +1,32 @@
+<view key="{{schemaKey}}" style="{{style}}" class="{{`sorm_layout fld_layout_temp1 ${className}`}}">
+  <view a:for="{{schema}}">
+    <!-- native items -->
+    <field
+      a:if="{{item._supported}}"
+      linkages="{{item.linkages}}"
+      keyName="{{item.keyName}}"
+      label="{{item.label}}"
+      component="{{item.component}}"
+      layout="{{item.layout}}"
+      getFormCore="{{item.getFormCore}}"
+      saveRef="{{item.saveRef}}"
+      required="{{item.required}}"
+    />
+    <!-- custom items -->
+    <view a:else>
+      <slot
+        name="items"
+        linkages="{{item.linkages}}"
+        keyName="{{item.keyName}}"
+        label="{{item.label}}"
+        component="{{item.component}}"
+        layout="{{item.layout}}"
+        getFormCore="{{item.getFormCore}}"
+        saveRef="{{item.saveRef}}"
+        required="{{item.required}}"
+      />
+    </view>    
+  </view>
+  <button a:if="{{useButton}}" onTap="submit" class="sm_btn default" type="primary">提交</button>
+  <slot a:else name="footer" submit="{{submit}}" reset="{{reset}}" getValues="{{getValues}}"/>
+</view>

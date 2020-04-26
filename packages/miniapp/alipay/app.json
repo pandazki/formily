@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "demo/index/index"
+  ],
+  "window": {
+    "enableWK": "YES",
+    "enableDSL": "YES",
+    "enableJSC": "YES",
+    "defaultTitle": "动态表单Sorm",
+    "backgroundColor": "#fff",
+    "pullRefresh": false,
+    "allowsBounceVertical": true
+  },
+  "debug": true
+}
