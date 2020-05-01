@@ -12,7 +12,7 @@ $ yarn add @fomily/miniapp
 ```json
 {
   "usingComponents": {
-    "sorm": "miniapp-form-test/alipay/schema-form/schema-form"
+    "sorm": "@fomily/miniapp/alipay/schema-form/schema-form"
   }
 }
 ```
@@ -30,8 +30,8 @@ $ yarn add @fomily/miniapp
 ```json
 {
   "usingComponents": {
-    "sorm": "miniapp-form-test/alipay/schema-form/schema-form",
-    "field": "miniapp-form-test/alipay/field/field",
+    "sorm": "@fomily/miniapp/alipay/schema-form/schema-form",
+    "field": "@fomily/miniapp/alipay/field/field",
   }
 }
 ```
