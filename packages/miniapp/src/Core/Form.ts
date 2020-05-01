@@ -18,7 +18,6 @@ import { createForm, IForm, LifeCycleTypes } from '@uform/core'
 import SelectorCore from 'selector-core'
 import ExpressionRun from "expression-run"
 import _get from 'lodash.get'
-import { InserMode } from 'selector-core/types/coreTypes'
 
 enum CustomEventName {
   ValidatedError = "validatedError",

@@ -1,12 +1,20 @@
 {
   "pages": [
-    "demo/index/index"
+    "index/index"
+  ],
+  "subPackages": [
+    {
+      "root": "demo",
+      "pages": [
+        "index/index"
+      ]
+    }
   ],
   "window": {
     "enableWK": "YES",
     "enableDSL": "YES",
     "enableJSC": "YES",
-    "defaultTitle": "Formily",
+    "defaultTitle": "Formily小程序表单DEMO",
     "backgroundColor": "#fff",
     "pullRefresh": false,
     "allowsBounceVertical": true

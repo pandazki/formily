@@ -7,22 +7,22 @@
 </template>
 
 <view>
-  <button size="default" type="primary" onTap="changeSchema">Button</button>
+  <!-- <button size="default" type="primary" onTap="changeSchema">Button</button> -->
   <schema-form style="background:#fff" schema="{{schema}}" onSubmit="formSubmit">
-      <field
-        slot="items"
-        slot-scope="props"
-        linkages="{{props.linkages}}"
-        keyName="{{props.keyName}}"
-        label="{{props.label}}"
-        component="{{props.component}}"
-        layout="{{props.layout}}"
-        getFormCore="{{props.getFormCore}}"
-        saveRef="{{props.saveRef}}"
-        required="{{props.required}}"
-      >
-        <template is="{{props.component.name}}" data="{{props}}" />
-      </field>
-      <btn slot="footer" slot-scope="footer" api="{{footer}}"/>
-    </schema-form>
+    <field
+      slot="items"
+      slot-scope="props"
+      linkages="{{props.linkages}}"
+      keyName="{{props.keyName}}"
+      label="{{props.label}}"
+      component="{{props.component}}"
+      layout="{{props.layout}}"
+      getFormCore="{{props.getFormCore}}"
+      saveRef="{{props.saveRef}}"
+      required="{{props.required}}"
+    >
+      <template is="{{props.component.name}}" data="{{props}}" />
+    </field>
+    <btn slot="footer" slot-scope="footer" api="{{footer}}"/>
+  </schema-form>
 </view>

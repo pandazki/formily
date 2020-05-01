@@ -5,20 +5,20 @@ Page({
       "title": "我是表单标题",
       "description": "我是表单描述",
       "properties": {
-        "custom": {
-          "title": "自定义组件",
-          "x-component": "custom"
-        },
-        "customB": {
-          "title": "自定义组件B",
-          "x-component": "custom"
-        },
+        // "custom": {
+        //   "title": "自定义组件",
+        //   "x-component": "custom"
+        // },
+        // "customB": {
+        //   "title": "自定义组件B",
+        //   "x-component": "custom"
+        // },
         "image-upload": {
           "title": "图片上传",
           "x-component": "image-upload",
           "x-component-props": {
             "value": [
-              "https://resource/apml27c7b746f1663a9d627f07d35f62b64a.png"
+              // "https://resource/apml27c7b746f1663a9d627f07d35f62b64a.png"
             ],
             "api": "https://httpbin.org/post"
           }
@@ -344,7 +344,6 @@ Page({
   },
   formSubmit(res) {
     console.log(res)
-
     my.alert({
       title: "提交成功"
     })
