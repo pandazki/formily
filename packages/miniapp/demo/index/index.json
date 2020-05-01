@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "schema-form": "../dist/alipay/schema-form/schema-form",
+    "field": "../dist/alipay/field/field",
+    "btn": "./btn/btn"
+  }
+}

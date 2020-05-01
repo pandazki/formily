@@ -1,0 +1,14 @@
+<view>
+  <view class="sm_picker_lv">
+    <text a:if="{{loading}}" style="color:#ccc">上传中...</text>
+    <text style="flex:1;color:#333">{{labelValue}}</text>
+    <image onTap="openPicker" mode="scaleToFill" src="//gw.alicdn.com/tfs/TB1rzlHErj1gK0jSZFuXXcrHpXa-41-36.png" style="width: 20px;height: 18px;background-color: #fff"/>
+  </view>
+
+  <view style="display:flex;flex-wrap:wrap;">
+    <view a:for="{{images}}" class="sm_image_upload">
+      <view class="sm_img_delete" onTap="deleteOne" data-value="{{item}}"></view>
+      <image mode="aspectFit" style="width: 58px;height:58px" src="{{item}}"/>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,12 @@
+<checkbox-group
+  class="sm_checkbox_group"
+  onChange="onChange">
+  <label class="sm_checkbox_wrap" a:for="{{dataSource}}">
+    <checkbox
+      value="{{item.value}}"
+      checked="{{item.isCurrent}}"
+      disabled="{{props.disabled === undefined ? item.disabled : disabled}}"
+      color="{{item.color}}" />
+    <text class="checkbox-text">{{item.label}}</text>
+  </label>
+</checkbox-group>

@@ -1,4 +1,0 @@
-<view class="sm_picker_lv" onTap="openPicker">
-  <text class="sm_vl_desc">{{labelValue ? '当前选择：' : '请选择'}}</text>
-  <text style="flex:1">{{labelValue}}</text>
-</view>

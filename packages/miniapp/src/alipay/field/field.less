@@ -1,0 +1,118 @@
+.fld_label>.fld_lb_text{
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1em;
+}
+.fld_layout_temp1{
+  font-size: 14px;
+  padding-bottom: 50px;
+  .fld_placeholder{
+    font-size: 14px;
+    font-weight: normal;
+  }
+  .fld{
+    border-bottom: 1px solid rgb(238, 238, 238);
+    padding: 15px;
+
+  }
+  .fld_wrap{
+    display: flex;
+
+    .fld_label{
+      width: 84px;
+      padding-top: 4px;
+      padding-right: 15px;
+      font-weight: bold;
+      .fld_lb_wran{
+        width: 10px;
+        padding-top:4px;
+      }
+    }
+    .fld_com{
+      flex: 1;
+      font-size: 0;
+      text{
+        font-size: 14px;
+      }
+      .fld_input{
+        box-sizing: border-box;
+        width: 100%;
+        padding: 0;
+        font-size: 14px;
+      }
+      .fld_textarea{
+
+        width: 100%;
+        font-size: 14px;
+        padding-top:4px;
+        padding-left: 0;
+        min-height: 4em;
+      }
+    }
+  }
+  .sm_btn.default{
+    padding: 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    height: 42px;
+    line-height: 42px;
+    border-radius: 0;
+    font-size: 16px;
+  }
+  .fld_error{
+    padding: 10px 0 0 10px;
+    color: red;
+  }
+}
+.fld_layout_temp2{
+  .fld{
+    margin: 0 0 10px 0;
+  }
+  .fld_btns>.fld_before,
+  .fld_label,
+  .fld_com{
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .fld_btns>.fld_before,
+  .fld_label{
+    width: 25%;
+    margin: 0 10px 0 0;
+    text-align: right;
+  }
+  .fld_error{
+    padding-left: 25%;
+    margin: 0 0 0 10px;
+    position: relative;
+    z-index: 2;
+    .fld_err_text{
+      color:#F23C3C;
+      font-size: 12px;
+    }
+  }
+  .fld_com{
+    width: 70%;
+  }
+}
+
+.sm_image_upload{
+  background-size: 100%;
+  background-clip: content-box;
+  position: relative;
+  width: 58px;
+  height:58px;
+  margin:0px 10px 10px 0px;
+  background-color: #f4f4f4 ;
+  .sm_img_delete{
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    background: url(https://gw.alicdn.com/tfs/TB17n0NEuL2gK0jSZFmXXc7iXXa-24-24.png) no-repeat center 100%;
+    background-size: contain;
+    right: -8px;
+    top: -8px;
+  }
+}
