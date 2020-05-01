@@ -4,7 +4,7 @@
 
 1. 安装
 ```
-$ yarn @fomily/miniapp
+$ yarn add @fomily/miniapp
 ```
 
 2. 引用小程序组件
