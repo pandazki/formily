@@ -1,6 +1,6 @@
 {
-  "name": "@fomily/miniapp",
-  "version": "0.0.1",
+  "name": "miniapp-form-test",
+  "version": "0.0.18",
   "description": "Formily 小程序动态表单组件",
   "repository": {
     "type": "git",
@@ -27,12 +27,15 @@
   "devDependencies": {
     "@babel/core": "^7.1.6",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.9.6",
+    "@babel/plugin-transform-typescript": "^7.9.6",
     "@babel/preset-env": "^7.1.6",
     "@babel/preset-typescript": "^7.1.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^4.0.0",
     "gulp-if": "^2.0.2",
+    "gulp-inject-envs": "^1.1.1",
     "gulp-less": "^4.0.1",
     "gulp-rename": "^1.2.3",
     "lint-staged": "^8.2.0",
@@ -56,13 +59,14 @@
   ],
   "lint-staged": {},
   "dependencies": {
-    "@uform/core": "^1.0.0-alpha.8",
+    "@babel/runtime": "^7.9.6",
+    "@uform/core": "^1.0.5",
     "esprima": "4.0.1",
     "expression-run": "^0.1.2",
-    "obs-parser": "^0.3.1",
     "jinter": "^0.1.1",
+    "lodash.get": "^4.4.2",
     "lodash.isequal": "^4.5.0",
-    "selector-core": "^0.5.2",
-    "lodash.get": "^4.4.2"
+    "obs-parser": "^0.3.1",
+    "selector-core": "^0.5.2"
   }
 }

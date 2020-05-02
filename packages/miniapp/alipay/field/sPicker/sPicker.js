@@ -3,12 +3,8 @@ Component({
   mixins: getFieldGroupMixin(),
   data: {},
   props: {},
-
-  didMount() {},
-
-  didUpdate() {},
-
-  didUnmount() {},
-
+  didMount: function didMount() {},
+  didUpdate: function didUpdate() {},
+  didUnmount: function didUnmount() {},
   methods: {}
 });

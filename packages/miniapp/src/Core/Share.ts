@@ -1,4 +1,5 @@
 import { IForm } from "@uform/core";
+import Selector from "selector-core";
 
 export enum NativeFormItemName {
   input = "input",
@@ -33,9 +34,9 @@ export interface ISupportedFormItem {
   "picker-view": boolean
 }
 
-enum FormType{
+enum FormType {
   Object = "object",
-  Array  = "array"
+  Array = "array"
 }
 
 export interface ISchema {
@@ -72,7 +73,7 @@ export interface ISchema {
 }
 export enum IServerType {
   MTOP = "mtop",
-  TOP  = "top",
+  TOP = "top",
   HTTP = "http"
 }
 export interface IMtopOption {
@@ -88,20 +89,20 @@ export interface IServer {
   fetch?: IServerDesc,
   submit?: IServerDesc
 }
-export interface IFormOption{
+export interface IFormOption {
   schema: ISchema,
   server?: IServer
 }
 
-export interface IFormItem{
+export interface IFormItem {
   name: string,
   props: any,
   expression?: object
 }
 export interface IValidate {
-  (): Promise<{ errors: Array<{path:string,messages:Array<string>}> }>
+  (): Promise<{ errors: Array<{ path: string, messages: Array<string> }> }>
 }
-export interface ISormComponents{
+export interface ISormComponents {
   component: IFormItem,
   /**
    * label
@@ -128,37 +129,37 @@ export interface ISormComponents{
   // listening: [],
   childrends: Array<ISormComponents>
 }
-interface IGetCore{
+interface IGetCore {
   (): IForm
 }
 interface IFormCore {
 
 }
 interface IFieldCore {
-  getValue: ()=>{},
-  setValue: ()=>{},
-  validate: ()=>{}
+  getValue: () => {},
+  setValue: () => {},
+  validate: () => {}
 }
 interface IEventHandle {
   ({ type, payload }: { type: string; payload: any }): void
 }
-export interface IEmmiter{
+export interface IEmmiter {
   (data: any): void
 }
-export interface IListener{
+export interface IListener {
   (callback: IEventHandle): void
 }
-export interface ISchemaPareserResult{
+export interface ISchemaPareserResult {
   values: any,
   components: Array<ISormComponents>
 }
-export interface IFormProps{
+export interface IFormProps {
   style: string,
   class: string,
   schema: ISchema,
   onSubmit?: (values: object) => void
 }
-export interface IFieldProps{
+export interface IFieldProps {
   style: string,
   class: string,
   layout: object,
@@ -169,23 +170,25 @@ export interface IFieldProps{
   value: string,
   validate: IValidate,
   linkages: Array<IExporession>
-  saveRef: (ref: any)=>{}
+  saveRef: (ref: any) => {}
 }
 
 interface IFormMethods {
   reset: () => void,
   submit: () => void
 }
-export interface IMixin<T> extends IAPP{
+export interface IMixin<T> extends IAPP {
   props?: T,
   data?: any,
   didMount?: () => void,
   didUpdate?: (props: T) => void,
+  onInit?: () => void,
   methods?: IFormMethods
   // selfValidate?: Promise<{isError: boolean, errors: Array<string>}>,
 }
-export interface IAPP{
-  setData?: (data: object,callback?:()=>void)=>{},
+export interface IAPP {
+  selector?: Selector;
+  setData?: (data: object, callback?: () => void) => {},
   props?: any,
   data?: any,
   isArrayValue?: boolean,
@@ -201,14 +204,14 @@ interface IDataSource {
   isDefault?: boolean,
   color?: string
 }
-export interface IFieldGroupProps<T>{
+export interface IFieldGroupProps<T> {
   props: {
     value?: T,
     dataSource: Array<IDataSource>,
   }
   onChange: (e: any) => {}
 }
-export interface IExporession{
+export interface IExporession {
   exp: string,
   deps: Array<string>,
   target: string

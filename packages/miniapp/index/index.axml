@@ -1,3 +1,0 @@
-<view>
-  <button onTap="goto">查看Demo</button>
-</view>

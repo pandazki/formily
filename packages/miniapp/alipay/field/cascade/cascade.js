@@ -1,44 +1,43 @@
 Component({
-  onInit() {
-    var {
-      props
-    } = this.props;
-    var {
-      value
-    } = props;
+  onInit: function onInit() {
+    var props = this.props.props;
+    var value = props.value;
 
     if (Array.isArray(value)) {
       this.setData({
-        labelValue: value.map(v => v.name).join(">")
+        labelValue: value.map(function (v) {
+          return v.name;
+        }).join(">")
       });
     }
   },
-
   methods: {
-    openPicker() {
-      var {
-        props,
-        onChange
-      } = this.props;
-      var {
-        dataSource,
-        placeholder = "请选择"
-      } = props;
+    openPicker: function openPicker() {
+      var _this = this;
+
+      var _this$props = this.props,
+          props = _this$props.props,
+          onChange = _this$props.onChange;
+      var dataSource = props.dataSource,
+          _props$placeholder = props.placeholder,
+          placeholder = _props$placeholder === void 0 ? "请选择" : _props$placeholder;
       my.multiLevelSelect && my.multiLevelSelect({
         title: placeholder,
         list: dataSource,
-        success: res => {
-          this.setData({
-            labelValue: res.result.map(v => v.name).join(">")
+        success: function success(res) {
+          _this.setData({
+            labelValue: res.result.map(function (v) {
+              return v.name;
+            }).join(">")
           });
+
           onChange && onChange({
             value: res.result
           });
         },
         name: placeholder,
-        fail: () => {}
+        fail: function fail() {}
       });
     }
-
   }
 });

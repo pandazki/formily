@@ -1,7 +1,5 @@
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+import _regeneratorRuntime from "@babel/runtime/regenerator";
+import _asyncToGenerator from "@babel/runtime/helpers/asyncToGenerator";
 import SelectorCore from 'selector-core';
 import _get from 'lodash.get';
 Component({
@@ -10,18 +8,15 @@ Component({
     images: []
   },
   props: {},
-
-  onInit() {
-    var {
-      value
-    } = this.props.props;
+  onInit: function onInit() {
+    var value = this.props.props.value;
     var dataSource = [];
 
     if (Array.isArray(value)) {
       dataSource = value;
     }
 
-    dataSource = dataSource.map((v, i) => {
+    dataSource = dataSource.map(function (v, i) {
       return {
         label: i,
         value: v
@@ -29,112 +24,122 @@ Component({
     });
     this.selector = new SelectorCore(dataSource, dataSource);
     this.setData({
-      images: this.selector.getValues().map(v => v.value)
+      images: this.selector.getValues().map(function (v) {
+        return v.value;
+      })
     });
   },
-
-  didUpdate() {},
-
-  didUnmount() {},
-
+  didUpdate: function didUpdate() {},
+  didUnmount: function didUnmount() {},
   methods: {
-    uploadImage(api, path, header, formData) {
-      return _asyncToGenerator(function* () {
-        return new Promise((resolve, reject) => {
-          my.uploadFile({
-            url: api,
-            fileType: 'image',
-            fileName: "image_" + Date.now().toString(32),
-            filePath: path,
-            header,
-            formData,
-            success: res => {
-              resolve(path);
-            },
+    uploadImage: function uploadImage(api, path, header, formData) {
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee() {
+        return _regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                return _context.abrupt("return", new Promise(function (resolve, reject) {
+                  my.uploadFile({
+                    url: api,
+                    fileType: 'image',
+                    fileName: "image_" + Date.now().toString(32),
+                    filePath: path,
+                    header: header,
+                    formData: formData,
+                    success: function success(res) {
+                      resolve(path);
+                    },
+                    fail: function fail(res) {
+                      console.error(res);
+                      reject(res);
+                    }
+                  });
+                }));
 
-            fail(res) {
-              console.error(res);
-              reject(res);
+              case 1:
+              case "end":
+                return _context.stop();
             }
-
-          });
-        });
-      })();
+          }
+        }, _callee);
+      }))();
     },
+    openPicker: function openPicker() {
+      var _this = this;
 
-    openPicker() {
-      var {
-        props,
-        onChange
-      } = this.props;
-      var {
-        sourceType = ['camera', 'album'],
-        count = 9,
-        // original 原图
-        // compressed 压缩图
-        sizeType = "compressed",
-        header,
-        formData,
-        api
-      } = props;
+      var _this$props = this.props,
+          props = _this$props.props,
+          onChange = _this$props.onChange;
+      var _props$sourceType = props.sourceType,
+          sourceType = _props$sourceType === void 0 ? ['camera', 'album'] : _props$sourceType,
+          _props$count = props.count,
+          count = _props$count === void 0 ? 9 : _props$count,
+          _props$sizeType = props.sizeType,
+          sizeType = _props$sizeType === void 0 ? "compressed" : _props$sizeType,
+          header = props.header,
+          formData = props.formData,
+          api = props.api;
       my.chooseImage({
-        sourceType,
-        count,
-        sizeType,
-        success: res => {
-          var {
-            apFilePaths = []
-          } = res;
+        sourceType: sourceType,
+        count: count,
+        sizeType: sizeType,
+        success: function success(res) {
+          var _res$apFilePaths = res.apFilePaths,
+              apFilePaths = _res$apFilePaths === void 0 ? [] : _res$apFilePaths;
           var ln = apFilePaths.length;
-          this.setData({
+
+          _this.setData({
             loading: true
           });
-          apFilePaths.map((path, index) => {
-            this.uploadImage(api, path, header, formData).then(path => {
-              var values = [...this.data.images, path];
-              var source = values.map(v => {
+
+          apFilePaths.map(function (path, index) {
+            _this.uploadImage(api, path, header, formData).then(function (path) {
+              var values = [].concat(_this.data.images, [path]);
+              var source = values.map(function (v) {
                 return {
                   value: v,
                   label: ""
                 };
               });
-              this.selector = new SelectorCore(source, source);
-              this.setData({
+              _this.selector = new SelectorCore(source, source);
+
+              _this.setData({
                 images: values
               });
+
               onChange && onChange({
                 value: values
               });
-            }).catch(() => {
+            })["catch"](function () {
               my.showToast({
                 content: "\u7B2C" + index + "\u5F20\u4E0A\u4F20\u5931\u8D25"
               });
-            }).finally(() => {
+            })["finally"](function () {
               ln = ln - 1;
 
               if (ln === 0) {
-                this.setData({
+                _this.setData({
                   loading: false
                 });
               }
             });
           });
         },
-        fail: () => {}
+        fail: function fail() {}
       });
     },
-
-    deleteOne(e) {
+    deleteOne: function deleteOne(e) {
       var value = _get(e, "target.dataset.value");
 
       this.selector.change([{
-        value,
+        value: value,
         label: ""
       }], "mutil");
       this.setData({
-        images: this.selector.getValues().map(v => v.value)
+        images: this.selector.getValues().map(function (v) {
+          return v.value;
+        })
       });
     }
-
   }
 });

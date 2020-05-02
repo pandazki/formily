@@ -44,6 +44,7 @@
       </field> -->
     </view>    
   </view>
+  <text>{{useButton}}</text>
   <button a:if="{{useButton}}" onTap="submit" class="sm_btn default" type="primary">提交</button>
   <slot a:else name="footer" submit="{{submit}}" reset="{{reset}}" getValues="{{getValues}}"/>
 </view>

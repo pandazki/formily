@@ -24,6 +24,7 @@ enum CustomEventName {
   SromRest = 'sormReset'
 }
 
+
 const Supported: ISupportedFormItem = {
   input: true,
   textarea: true,
@@ -41,17 +42,18 @@ const Supported: ISupportedFormItem = {
   "date-picker": true,
   "radio-group": true,
   "checkbox-group": true,
-  "picker-view": true
-}
+  "picker-view": true,
+} as ISupportedFormItem
+
 class Sorm {
   constructor() { }
   public init() {
     this.core = createForm({
-      onChange: (values) => {
+      onChange: (values: any) => {
         console.log(values)
       },
       //表单提交事件回调
-      onSubmit: (values) => {
+      onSubmit: (values: any) => {
 
       },
       //表单重置事件回调
@@ -59,7 +61,7 @@ class Sorm {
 
       },
       //表单校验失败事件回调
-      onValidateFailed: (validated) => {
+      onValidateFailed: (validated: any) => {
       }
     })
   }
@@ -78,7 +80,7 @@ class Sorm {
       let value = props[target]
       if (checkBrace.test(value) && checkRoot.test(value)) {
         let exp = value.replace(checkBrace, "$1")
-        exp.replace(/root\.value\.([a-zA-Z]*)/g, (m, a = "") => {
+        exp.replace(/root\.value\.([a-zA-Z]*)/g, (m: any, a = "") => {
           let [name = ""] = a.split(".")
           if (deps) {
             deps.push(name)
@@ -122,7 +124,7 @@ class Sorm {
         value: cprops.value,
         rules: rules
       })
-      field.getState((state) => {
+      field.getState((state: { required: boolean }) => {
         required = state.required
       })
 
@@ -188,7 +190,7 @@ const InitForm = function (ref: IMixin<IFormProps>) {
     },
     getValues: async () => {
       return new Promise((resolve, reject) => {
-        sorm.getCore().getFormState((state) => {
+        sorm.getCore().getFormState((state: any[]) => {
           resolve(state.values)
         })
       })
@@ -214,9 +216,9 @@ export function getFormMixins() {
         let core = sorm.getCore()
         let { onSubmit, onError } = this.props
 
-        core.submit((res) => {
+        core.submit((res: any) => {
           onSubmit && onSubmit(res)
-        }).catch(err => {
+        }).catch((err: any) => {
           core.notify(CustomEventName.ValidatedError, err)
           onError && onError(err)
         })
@@ -226,7 +228,7 @@ export function getFormMixins() {
 }
 
 const selfValidate = async function (validate: IValidate) {
-  let res
+  let res: { errors: any }
   try {
     res = await validate()
 
@@ -247,14 +249,14 @@ const selfValidate = async function (validate: IValidate) {
 const runCondition = function (condition: string, value: object): any {
   return ExpressionRun(condition, { root: { value } })
 }
-const updateProps = async (core, linkages, depsName?: string): Promise<{ [key: string]: any }> => {
+const updateProps = async (core: { getFormState: (arg0: ({ values }: { values: any }) => void) => void }, linkages: any[], depsName?: string): Promise<{ [key: string]: any }> => {
   return new Promise((resolve, reject) => {
     if (linkages.length > 0) {
-      let state
+      let state: { [key: string]: any } | PromiseLike<{ [key: string]: any }>
       core.getFormState(({ values }) => {
         linkages
-          .filter(v => depsName ? v.deps.indexOf(depsName) > -1 : true)
-          .map(exporession => {
+          .filter((v: { deps: string | string[] }) => depsName ? v.deps.indexOf(depsName) > -1 : true)
+          .map((exporession: { exp: string; target: string }) => {
             let result = runCondition(exporession.exp, values)
             if (!state) state = {}
             state["cprops." + exporession.target] = result
@@ -288,7 +290,7 @@ export function getFieldMixins() {
           // 验证失败
           case CustomEventName.ValidatedError:
             {
-              let [{ path = "", messages = [] } = {}] = (payload || []).filter(v => v.path === keyName)
+              let [{ path = "", messages = [] } = {}] = (payload || []).filter((v: { path: string }) => v.path === keyName)
               if (path) {
                 this.setData({
                   isError: true,
@@ -338,7 +340,7 @@ export function getFieldMixins() {
 
     },
     methods: {
-      async onChange(e) {
+      async onChange(e: { detail: { value: any }; value: any }) {
         let {
           getFormCore,
           keyName,
@@ -356,15 +358,15 @@ export function getFieldMixins() {
           ...res
         })
       },
-      onBlur(e) { },
-      onFocus(e) { },
-      onConfirm(e) { },
-      onChanging(e) { }
+      onBlur(e: any) { },
+      onFocus(e: any) { },
+      onConfirm(e: any) { },
+      onChanging(e: any) { }
     } as IAPP
   } as IMixin<IFieldProps>]
 }
 
-const SelectorOninit = function () {
+const SelectorOninit = function (this: IAPP) {
   let { dataSource, value } = this.props.props
   let selector = new SelectorCore(dataSource, [{ value, label: value }])
   selector.mixValueFromDataSource()
@@ -382,7 +384,7 @@ export function getFieldGroupMixin() {
   return [{
     onInit: SelectorOninit,
     methods: {
-      onChange(e) {
+      onChange(e: any) {
         let value = _get(e, "detail.value", undefined)
         let indexValue = value
         let tagName = _get(e, "target.tagName", "")
@@ -391,7 +393,7 @@ export function getFieldGroupMixin() {
           let source = selector.getDataSource()[value]
           value = selector.clean(source).value
         }
-        this.selector.change([{ value }], "single")
+        this.selector.change([{ value, label: "" }], "single")
         this.selector.mixValueFromDataSource()
         this.setData({
           value,
@@ -420,10 +422,10 @@ export function getFieldGroupArrayMixin() {
       this.selector = selector
     },
     methods: {
-      onChange(e) {
+      onChange(e: any) {
         let value = _get(e, "detail.value", [])
         let selector: SelectorCore = this.selector
-        selector.initValues(value.map(v => {
+        selector.initValues(value.map((v: any) => {
           return { value: v, label: v }
         }))
 

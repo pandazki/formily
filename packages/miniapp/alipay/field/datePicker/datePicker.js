@@ -1,5 +1,4 @@
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
+import _extends from "@babel/runtime/helpers/extends";
 var Format;
 
 (function (Format) {
@@ -32,16 +31,28 @@ var DateFormat = function DateFormat(format, timestamp) {
 };
 
 var GetDateValue = function GetDateValue(value, props) {
-  var {
-    valueType,
-    format
-  } = props; // format to timestamp
+  var valueType = props.valueType,
+      format = props.format; // format to timestamp
 
   if (valueType === ValueType.Timestamp && format !== Format.HM) {
     var date = new Date(0);
-    var [ymd, hm = "00:00"] = value.split(' ');
-    var [year, month = 1, day = 1] = ymd.split('-');
-    var [hours, minutes] = hm.split(":");
+
+    var _value$split = value.split(' '),
+        ymd = _value$split[0],
+        _value$split$ = _value$split[1],
+        hm = _value$split$ === void 0 ? "00:00" : _value$split$;
+
+    var _ymd$split = ymd.split('-'),
+        year = _ymd$split[0],
+        _ymd$split$ = _ymd$split[1],
+        month = _ymd$split$ === void 0 ? 1 : _ymd$split$,
+        _ymd$split$2 = _ymd$split[2],
+        day = _ymd$split$2 === void 0 ? 1 : _ymd$split$2;
+
+    var _hm$split = hm.split(":"),
+        hours = _hm$split[0],
+        minutes = _hm$split[1];
+
     date.setFullYear(+year);
     date.setMonth(+month - 1);
     date.setDate(+day);
@@ -57,15 +68,10 @@ Component({
   mixins: [],
   data: {},
   props: {},
-
-  didMount() {
-    var {
-      props
-    } = this.props;
-    var {
-      valueType,
-      value
-    } = props;
+  didMount: function didMount() {
+    var props = this.props.props;
+    var valueType = props.valueType,
+        value = props.value;
     var labelValue = value;
 
     if (value && !isNaN(+value) && valueType === ValueType.Timestamp) {
@@ -73,24 +79,21 @@ Component({
     }
 
     this.setData({
-      labelValue,
+      labelValue: labelValue,
       value: labelValue
     });
   },
-
-  didUpdate() {},
-
-  didUnmount() {},
-
+  didUpdate: function didUpdate() {},
+  didUnmount: function didUnmount() {},
   methods: {
-    openPicker() {
-      var {
-        labelValue
-      } = this.data;
-      var {
-        props = {},
-        onChange
-      } = this.props;
+    openPicker: function openPicker() {
+      var _this = this;
+
+      var labelValue = this.data.labelValue;
+      var _this$props = this.props,
+          _this$props$props = _this$props.props,
+          props = _this$props$props === void 0 ? {} : _this$props$props,
+          onChange = _this$props.onChange;
       props.format = props.format || Format.YMD;
 
       if (labelValue) {
@@ -99,24 +102,23 @@ Component({
         props.currentDate = DateFormat(props.format, Date.now());
       }
 
-      my.datePicker && my.datePicker(_extends({}, props, {
-        success: res => {
-          var {
-            date
-          } = res;
+      my.datePicker && my.datePicker(_extends(_extends({}, props), {}, {
+        success: function success(res) {
+          var date = res.date;
           var value = GetDateValue(date, props);
-          this.setData({
-            value,
+
+          _this.setData({
+            value: value,
             labelValue: date
           });
+
           onChange && onChange({
-            value
+            value: value
           });
         },
-        fail: res => {},
-        complete: res => {}
+        fail: function fail(res) {},
+        complete: function complete(res) {}
       }));
     }
-
   }
 });
