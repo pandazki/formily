@@ -12,7 +12,7 @@ $ yarn add @fomily/miniapp
 ```json
 {
   "usingComponents": {
-    "sorm": "@fomily/miniapp/alipay/schema-form/schema-form"
+    "schema-form": "@fomily/miniapp/alipay/schema-form/schema-form"
   }
 }
 ```
@@ -20,7 +20,7 @@ $ yarn add @fomily/miniapp
 3. 使用组件
 
 ```html
-  <sorm style="background:#fff" class="className" schema="{{schema}}" onSubmit="onSubmit" onError="onError"></sorm>
+  <schema-form style="background:#fff" class="className" schema="{{schema}}" onSubmit="onSubmit" onError="onError"></schema-form>
 ```
 
 4. 使用自定义组件
@@ -30,7 +30,7 @@ $ yarn add @fomily/miniapp
 ```json
 {
   "usingComponents": {
-    "sorm": "@fomily/miniapp/alipay/schema-form/schema-form",
+    "schema-form": "@fomily/miniapp/alipay/schema-form/schema-form",
     "field": "@fomily/miniapp/alipay/field/field",
   }
 }
