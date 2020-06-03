@@ -112,15 +112,20 @@ export const NextSchemaFieldAdaptor: React.FC<ISchemaFieldAdaptorProps> = props 
     )
   }
 
-  return <MegaLayoutItem itemProps={itemProps} {...props.props} schemaChildren={props.children}>
-    {(megaComponent) => {
-      if (megaComponent) {
-        return renderComponent(megaComponent, { addonAfter })
-      }
+  return <Form.Item {...itemProps}>
+    {renderComponent(props.children, { addonAfter })}
+  </Form.Item>
 
-      return <Form.Item {...itemProps}>
-        {renderComponent(props.children, { addonAfter })}
-      </Form.Item>
-    }}      
-  </MegaLayoutItem>
+  // TODO: test for mega
+  // return <MegaLayoutItem itemProps={itemProps} {...props.props} schemaChildren={props.children}>
+  //   {(megaComponent) => {
+  //     if (megaComponent) {
+  //       return renderComponent(megaComponent, { addonAfter })
+  //     }
+
+  //     return <Form.Item {...itemProps}>
+  //       {renderComponent(props.children, { addonAfter })}
+  //     </Form.Item>
+  //   }}      
+  // </MegaLayoutItem>
 }

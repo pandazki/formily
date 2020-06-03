@@ -117,18 +117,24 @@ export const FormItem: React.FC<INextFormItemProps> = topProps => {
       addonAfter,
     }
 
-    return <MegaLayoutItem itemProps={itemProps} {...props}>
-      {(megaComponentProps) => {
-        if (megaComponentProps) {
-          return renderComponent({ props: megaComponentProps, state, mutators, form })
-        }
+    const { addonBefore, addonAfter, ...otherItemProps } = itemProps
+    return <NextFormItem {...otherItemProps}>
+      {renderComponent({ props: componentProps, state, mutators, form })}
+    </NextFormItem>
 
-        const { addonBefore, addonAfter, ...otherItemProps } = itemProps
-        return <NextFormItem {...otherItemProps}>
-          {renderComponent({ props: componentProps, state, mutators, form })}
-        </NextFormItem>
-      }}      
-    </MegaLayoutItem>
+    // TODO: test for mega
+    // return <MegaLayoutItem itemProps={itemProps} {...props}>
+    //   {(megaComponentProps) => {
+    //     if (megaComponentProps) {
+    //       return renderComponent({ props: megaComponentProps, state, mutators, form })
+    //     }
+
+    //     const { addonBefore, addonAfter, ...otherItemProps } = itemProps
+    //     return <NextFormItem {...otherItemProps}>
+    //       {renderComponent({ props: componentProps, state, mutators, form })}
+    //     </NextFormItem>
+    //   }}      
+    // </MegaLayoutItem>
   }
 
   if (!component && children) {

@@ -183,6 +183,8 @@ export const SchemaField: React.FunctionComponent<ISchemaFieldProps> = (
           )
           return null
         }
+
+        debugger
         return React.createElement(
           formRegistry.formItemComponent,
           props,
@@ -214,6 +216,8 @@ export const SchemaField: React.FunctionComponent<ISchemaFieldProps> = (
               )
               return null
             }
+
+            debugger
             return React.createElement(
               formRegistry.formItemComponent,
               props,
