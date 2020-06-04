@@ -1,0 +1,5 @@
+<view class="sm_picker_lv" onTap="openPicker">
+  <text class="sm_vl_desc">{{labelValue ? '' : '请选择'}}</text>
+  <text style="flex:1;color:#333">{{labelValue}}</text>
+  <image mode="scaleToFill" src="//gw.alicdn.com/tfs/TB1oxxAEuH2gK0jSZJnXXaT1FXa-10-18.png" style="width: 5px;height: 9px;"/>
+</view>
