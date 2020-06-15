@@ -91,6 +91,9 @@ export interface ISchemaFormRegistry {
   virtualFields: {
     [key: string]: ISchemaVirtualFieldComponent
   }
+  preCompiledFields: {
+    [key: string]: any
+  }
   wrappers?: ISchemaFieldWrapper[]
   formItemComponent: React.JSXElementConstructor<any>
   formComponent: string | React.JSXElementConstructor<any>

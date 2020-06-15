@@ -14,6 +14,7 @@
     - [理解表单布局](./schema-develop/mega-layout-antd.md)
     - [理解表单节点树](./schema-develop/form-graph.md)
     - [理解表单扩展机制](./schema-develop/form-extension.md)
+    - [理解表单未来扩展机制](./schema-develop/form-extension-future.md)
   - 实践教程
     - [实现复杂联动](./schema-develop/complex-linkage.md)
     - [实现复杂布局](./schema-develop/form-layout.md)
