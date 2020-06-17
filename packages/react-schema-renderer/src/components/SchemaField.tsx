@@ -196,6 +196,15 @@ export const SchemaField: React.FunctionComponent<ISchemaFieldProps> = (
     })
   } else {
     if (isStr(initialComponent)) {
+      // if (formRegistry.preRunFields[initialComponent]) {
+      //   const schema = new Schema(formRegistry.preRunFields[initialComponent])
+      //   return (
+      //     <SchemaField
+      //       schema={schema}
+      //       path={schema.key}
+      //     />
+      //   )
+      // } else
       if (formRegistry.fields[initialComponent]) {
         return renderFieldDelegate(props => {
           const stateComponent = lowercase(
@@ -243,6 +252,22 @@ export const SchemaField: React.FunctionComponent<ISchemaFieldProps> = (
               )
               return null
             }
+
+            if (formRegistry.preRunFields[initialComponent]) {
+              return React.createElement(
+                formRegistry.virtualFields[stateComponent],
+                {
+                  ...props,
+                  children: Object.keys(props.schema.properties).map(k => {
+                    return <SchemaField
+                      schema={props.schema.properties[k]}
+                      path={props.schema.properties[k].key}
+                    />
+                  })
+                },                
+              )
+            }
+
             return React.createElement(
               formRegistry.virtualFields[stateComponent],
               props

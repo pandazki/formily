@@ -105,6 +105,9 @@ const useInternalSchemaForm = (props: ISchemaFormProps) => {
       ...registry.virtualFields,
       ...virtualFields
     }),
+    preRunFields: lowercaseKeys({
+      ...registry.preRunFields,
+    }),
     formComponent: formComponent ? formComponent : registry.formComponent,
     formItemComponent: formItemComponent
       ? formItemComponent

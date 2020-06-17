@@ -12,15 +12,20 @@ import pascalCase from 'pascal-case'
 const registry: ISchemaFormRegistry = {
   fields: {},
   virtualFields: {},
-  preCompiledFields: {},
+  preRunFields: {},
   wrappers: [],
   formItemComponent: ({ children }) => children,
   formComponent: 'form'
 }
 
+export const registerPreRunBox = (key, schema) => {
+  registry.preRunFields[key] = schema
+}
+
 export const getRegistry = () => {
   return {
     fields: registry.fields,
+    preRunFields: registry.preRunFields,
     virtualFields: registry.virtualFields,
     formItemComponent: registry.formItemComponent,
     formComponent: registry.formComponent
@@ -98,24 +103,6 @@ export function registerVirtualBox(
     name = lowercase(name)
     registry.virtualFields[name] = component
     registry.virtualFields[name].displayName = pascalCase(name)
-  }
-}
-
-// 注册预编译组件
-// 1. 可以使用内置组件，各种field或VirtualField（支持嵌套预编译组件）
-// 2. 提前跑schema解析流程，写入全局变量
-export function registerPreCompiledField(
-  name: string,
-  component: any
-) {
-  if (
-    name &&
-    (isFn(component) || typeof component.styledComponentId === 'string')
-  ) {
-    name = lowercase(name)
-    // TODO：预编译解析逻辑函数
-    // const schema = runSchema(component({ preRun: true }))
-    registry.preCompiledFields[name] = {}
   }
 }
 
