@@ -1,0 +1,23 @@
+{
+  "name": "@formily/react-schema-editor-next",
+  "version": "1.0.0",
+  "homepage": "https://github.com/pandazki/formily#readme",
+  "license": "MIT",
+  "main": "lib",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pandazki/formily.git"
+  },
+  "types": "lib/index.d.ts",
+  "engines": {
+    "npm": ">=3.0.0"
+  },
+  "scripts": {
+  },
+  "bugs": {
+    "url": "https://github.com/pandazki/formily/issues"
+  }
+}
